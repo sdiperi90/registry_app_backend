@@ -1,0 +1,33 @@
+{
+    "name": "registry-app",
+    "version": "0.1.0",
+    "private": true,
+    "dependencies": {
+        "pg": "^7.8.1",
+        "react": "^16.8.3",
+        "react-dom": "^16.8.3",
+        "react-scripts": "2.1.5",
+        "sequelize": "^4.42.1"
+    },
+    "scripts": {
+        "build": "react-scripts build",
+        "test": "react-scripts test",
+        "eject": "react-scripts eject",
+        "db:init": "dropdb --if-exists registry_db && createdb registry_db",
+        "db:reset": "node scripts/resetDb.js",
+        "db:model": "node models/models.js",
+        "db:seed": "node scripts/seed.js",
+        "server": "nodemon server.js",
+        "dev": "concurrently \"npm run server\" \"react-scripts start\"",
+        "start": "concurrently \"node server.js\" \"react-scripts start\""
+    },
+    "eslintConfig": {
+        "extends": "react-app"
+    },
+    "browserslist": [
+        ">0.2%",
+        "not dead",
+        "not ie <= 11",
+        "not op_mini all"
+    ]
+}
