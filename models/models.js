@@ -9,7 +9,7 @@ const db = new Sequelize({
 });
 
 const User = db.define("user", {
-    registry_id: {
+    user_id: {
         type: Sequelize.INTEGER,
         primaryKey: true,
         autoIncrement: true
@@ -18,24 +18,6 @@ const User = db.define("user", {
     last_name: Sequelize.STRING,
     email: Sequelize.STRING,
     username: Sequelize.STRING
-});
-
-const Present = db.define("present", {
-    gift_id: {
-        type: Sequelize.INTEGER,
-        primaryKey: true,
-        autoIncrement: true
-    },
-    product_id: Sequelize.INTEGER,
-    purchased: {
-        type: Sequelize.BOOLEAN,
-        defaultValue: false
-    },
-    favorites: {
-        type: Sequelize.BOOLEAN,
-        defaultValue: false
-    },
-    event_id: Sequelize.INTEGER
 });
 
 const Event = db.define("event", {
@@ -51,6 +33,28 @@ const Event = db.define("event", {
     host_2: Sequelize.STRING
 });
 
+User.hasMany(Event, { foreignKey: "user_id" });
+Event.belongsTo(User, { foreignKey: "user_id" });
+
+const Present = db.define("present", {
+    present_id: {
+        type: Sequelize.INTEGER,
+        primaryKey: true,
+        autoIncrement: true
+    },
+    purchased: {
+        type: Sequelize.BOOLEAN,
+        defaultValue: false
+    },
+    favorites: {
+        type: Sequelize.BOOLEAN,
+        defaultValue: false
+    }
+});
+
+Event.hasMany(Present, { foreignKey: "event_id" });
+Present.belongsTo(Event, { foreignKey: "event_id" });
+
 const Product = db.define("product", {
     product_id: {
         type: Sequelize.INTEGER,
@@ -62,6 +66,9 @@ const Product = db.define("product", {
     price: Sequelize.STRING,
     link: Sequelize.STRING
 });
+
+Product.hasMany(Present, { foreignKey: "product_id" });
+Present.belongsTo(Product, { foreignKey: "product_id" });
 
 db.sync();
 

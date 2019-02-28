@@ -22,6 +22,8 @@ https://drive.google.com/drive/u/0/folders/1Q0LvgGuJJtvojfcFnUX6SvJQgmPSs0sh?ths
 
 ## Priority Matrix
 
+https://drive.google.com/drive/u/0/folders/16xbMXq2KNDUchZ4r04Ytk1mrwTQe59ww?ths=true
+
 ### MVP/PostMVP - 5min
 
 #### MVP
@@ -39,7 +41,7 @@ https://drive.google.com/drive/u/0/folders/1Q0LvgGuJJtvojfcFnUX6SvJQgmPSs0sh?ths
 
 ## Architectural Design
 
-https://drive.google.com/drive/folders/1PWqJeldHsh4n2de7wu_8PFWaes2rw3tm?ths=true
+https://drive.google.com/drive/u/0/folders/1PWqJeldHsh4n2de7wu_8PFWaes2rw3tm?ths=true
 
 ## ERD
 
@@ -47,26 +49,33 @@ https://drive.google.com/drive/u/0/folders/1sCyJ0LnFqWSAtttzIwKgoFhHRamKEURC?ths
 
 ## UI Components
 
-| Component |                     Description                     |
-| --------- | :-------------------------------------------------: |
-| Header    |     This will render the header include the nav     |
-| Home      |          This will render the landing page          |
-| Login     |           This will render the login form           |
-| Signup    |          This will render the signup form           |
-| Main      | This will render Calendar, To-Dos, Notes Components |
-| Calendar  |    This will render the events added to calendar    |
-| To-Dos    |          This will render the To-Dos list           |
-| Notes     |             This will render the notes              |
-| Footer    |             This will render the footer             |
+| Component      |                 Description                  |
+| -------------- | :------------------------------------------: |
+| Header         | This will render the header include the nav  |
+| Home           |      This will render the landing page       |
+| Login          |       This will render the login form        |
+| SearchRegistry |  This will render search form for registry   |
+| RegistryResult | This will render registry result from search |
+| ProductList    |   This will render ProductItem Componenet    |
+| ProductItem    |        This will render all products         |
+| CreateRegistry |   This will render form to create registry   |
+| RegistryList   |   This will render RegistryItem Component    |
+| RegistryItem   |   This will render Items added to registry   |
+| Footer         |         This will render the footer          |
 
-| Component       | Priority | Estimated Time | Actual Time |
-| --------------- | :------: | :------------: | :---------: |
-| Login           |    H     |      8hrs      |     ...     |
-| Sign Up         |    H     |      5hrs      |     ...     |
-| Calendar/Events |    H     |     12hrs      |     ...     |
-| To-Dos          |    H     |     12hrs      |     ...     |
-| Notes           |    H     |     12hrs      |     ...     |
-| Total           |    H     |      6hrs      |     ...     |
+| Component      | Priority | Estimated Time | Actual Time |
+| -------------- | :------: | :------------: | :---------: |
+| Home           |    H     |      4hrs      |     ...     |
+| Login          |    H     |      8hrs      |     ...     |
+| Sign Up        |    H     |      4hrs      |     ...     |
+| SearchRegistry |    H     |     12hrs      |     ...     |
+| RegistryResult |    H     |     12hrs      |     ...     |
+| ProductList    |    H     |      2hrs      |     ...     |
+| ProductItem    |    H     |      6hrs      |     ...     |
+| CreateRegistry |    H     |      8hrs      |     ...     |
+| RegistryList   |    H     |      2hrs      |     ...     |
+| RegistryItem   |    H     |      8hrs      |     ...     |
+| Total          |    H     |     58hrs      |     ...     |
 
 ## Helper Functions
 
