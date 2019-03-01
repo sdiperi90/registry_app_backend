@@ -2,15 +2,17 @@
 
 ## Project Schedule
 
-| Day   | Deliverable                                          | Status     |
-| ----- | ---------------------------------------------------- | ---------- |
-| Day 1 | Project Description                                  | Complete   |
-| Day 2 | Wireframes / Priority Matrix / Functional Components | Complete   |
-| Day 3 | Core Application Structure (HTML, CSS, etc.)         | Incomplete |
-| Day 4 | Pseudocode / actual code                             | Incomplete |
-| Day 5 | Initial Clickable Model                              | Incomplete |
-| Day 6 | MVP                                                  | Incomplete |
-| Day 7 | Present                                              | Incomplete |
+| Day   | Date        | Deliverable                                                                           | Status     |
+| ----- | ----------- | ------------------------------------------------------------------------------------- | ---------- |
+| Day 1 | February 28 | Project Description                                                                   | Complete   |
+| Day 1 | February 28 | Wireframes / Priority Matrix / Functional Components                                  | Complete   |
+| Day 1 | February 28 | Login with Google oauth                                                               | Complete   |
+| Day 2 | March 1     | Core Application Structure (HTML, CSS, etc.)                                          | Incomplete |
+| Day 3 | March 2     | Pseudocode / actual code                                                              | Incomplete |
+| Day 4 | March 3     | CRUD on Registry (create, edit, delete registry)                                      | Incomplete |
+| Day 5 | March 4     | CRUD on Presents (create, delete, update presents list)                               | Incomplete |
+| Day 6 | March 5     | Conditional rendering presents list (view all, purchased, remaining items, favorites) | Incomplete |
+| Day 7 | March 6     | Present                                                                               | Incomplete |
 
 ## Project Description
 
