@@ -1,7 +1,8 @@
 const Sequelize = require("sequelize");
+const dbName = "registry_db";
 
 const db = new Sequelize({
-    database: "registry_db",
+    database: dbName,
     dialect: "postgres",
     define: {
         underscored: true
@@ -14,10 +15,10 @@ const User = db.define("user", {
         primaryKey: true,
         autoIncrement: true
     },
+    googleId: Sequelize.STRING,
     first_name: Sequelize.STRING,
     last_name: Sequelize.STRING,
-    email: Sequelize.STRING,
-    username: Sequelize.STRING
+    email: Sequelize.STRING
 });
 
 const Event = db.define("event", {
