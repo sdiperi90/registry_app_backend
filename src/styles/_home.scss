@@ -1,0 +1,59 @@
+.home-page-img {
+    img {
+        width: 100vw;
+        box-shadow: 5px 5px 5px lightgray;
+    }
+}
+
+.img-container {
+    display: flex;
+    justify-content: center;
+    div {
+        border: 5px solid lightblue;
+        margin: 30px;
+    }
+
+    img {
+        width: 300px;
+        padding: 30px;
+    }
+}
+
+.create-registry-btn {
+    margin: 0 auto;
+    text-align: center;
+}
+
+.form-container {
+    text-align: center;
+    padding: 50px;
+
+    h1 {
+        padding: 5px;
+    }
+}
+
+form {
+    input {
+        width: 30%;
+        font-size: 1.1rem;
+        padding: 5px 5px;
+        margin: 0px 20px;
+    }
+    button {
+        width: 20%;
+        font-size: 1.1rem;
+    }
+    select {
+        font-size: 1.1rem;
+        width: 30%;
+    }
+}
+
+.event-icons {
+    background: white;
+    width: 40%;
+    img {
+        width: 30px;
+    }
+}

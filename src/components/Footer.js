@@ -3,7 +3,14 @@ import React from "react";
 const Footer = () => {
     return (
         <div>
-            <h1>Footer Component</h1>
+            <hr />
+            <div className="footer-img">
+                <img src={require("../images/logo5.png")} />
+            </div>
+            <div className="copy-right">
+                <h3>Registry Help</h3>
+                <p> &copy; 2019 sdiperi</p>
+            </div>
         </div>
     );
 };
