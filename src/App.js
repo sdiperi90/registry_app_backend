@@ -5,6 +5,8 @@ import Header from "./components/Header";
 import Home from "./components/Home";
 import Footer from "./components/Footer";
 import SignUp from "./components/SignUp";
+import CreateRegistry from "./components/CreateRegistry";
+import UserRegistry from "./components/UserRegistry";
 import axios from "axios";
 
 class App extends Component {
@@ -32,15 +34,32 @@ class App extends Component {
                     getOffsetHeight={this.getOffsetHeight}
                     user={this.state.user}
                 />
-                <Route
-                    exact
-                    path="/"
-                    render={() => (
-                        <Home headerOffset={this.state.headerOffset} />
-                    )}
-                />
+                <main style={{ paddingTop: `${this.state.headerOffset}px` }}>
+                    <Route
+                        exact
+                        path="/"
+                        render={() => (
+                            <Home headerOffset={this.state.headerOffset} />
+                        )}
+                    />
 
-                <Route exact path="/signup" render={() => <SignUp />} />
+                    <Route exact path="/signup" render={() => <SignUp />} />
+                    <Route
+                        exact
+                        path="/registry/create"
+                        render={() => (
+                            <CreateRegistry
+                                headerOffset={this.state.headerOffset}
+                            />
+                        )}
+                    />
+
+                    <Route
+                        exact
+                        path="/user/registry"
+                        render={() => <UserRegistry />}
+                    />
+                </main>
 
                 {/* <Home headerOffset={this.state.headerOffset} /> */}
                 <Footer />

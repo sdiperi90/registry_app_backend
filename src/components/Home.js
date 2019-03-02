@@ -4,16 +4,16 @@ import { Link } from "react-router-dom";
 class Home extends Component {
     render() {
         return (
-            <main style={{ paddingTop: `${this.props.headerOffset}px` }}>
+            <div>
                 <div className="home-page-img">
                     <img src={require("../images/weddinggiftlistideas.jpg")} />
-                    <div className="event-icons">
+                    {/* <div className="event-icons">
                         <div>
                             <img src={require("../images/stroller.svg")} />
                             <img src={require("../images/ring.png")} />
                         </div>
                         <button>Create registry</button>
-                    </div>
+                    </div> */}
                 </div>
                 <div className="form-container">
                     <h1>Registries & Lists </h1>
@@ -39,13 +39,13 @@ class Home extends Component {
                             src={require("../images/baby-shower-gifts-5.jpg")}
                         />
                     </div>
-                    <Link to="/signup">
+                    <Link to="/registry/create">
                         <button className="create-registry-btn">
                             Create Registry
                         </button>
                     </Link>
                 </div>
-            </main>
+            </div>
         );
     }
 }

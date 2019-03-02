@@ -51,8 +51,13 @@ form {
 }
 
 .event-icons {
-    background: white;
-    width: 40%;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+
+    background: rgba(243, 240, 240, 1);
+    width: 30%;
     img {
         width: 30px;
     }
