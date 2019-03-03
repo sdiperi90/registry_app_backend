@@ -2,9 +2,8 @@ import React, { Component } from "react";
 
 class Product extends Component {
     render() {
-        // ../images/baby-shower/crib.jpeg
-        let { product } = this.props;
-        console.log(product.img);
+        let { product, handleChangeItems, buttonText } = this.props;
+
         return (
             <div className="product-container">
                 <div>
@@ -21,7 +20,14 @@ class Product extends Component {
                         <div>
                             <img src={require("../images/gift-trans.png")} />
                         </div>
-                        <button>add to registry</button>
+
+                        <button
+                            onClick={e => {
+                                handleChangeItems(product);
+                            }}
+                        >
+                            {buttonText}
+                        </button>
                     </div>
                 </div>
             </div>

@@ -1,14 +1,40 @@
 import React, { Component } from "react";
 import ProductList from "../components/ProductList";
+import RegistryItemList from "../components/RegistryItemList";
 
 class Registry extends Component {
-    state = {};
+    state = {
+        manageItems: false,
+        addItems: false,
+        registryItems: []
+    };
 
-    handleItemsDisplay(item) {
-        const newState = {};
-        newState[item] = true;
-        this.setState(newState);
-    }
+    handleItemsDisplay = (e, btn) => {
+        e.preventDefault();
+        if (btn == "manageItems") {
+            this.setState({ manageItems: true, addItems: false });
+        } else {
+            this.setState({ manageItems: false, addItems: true });
+        }
+    };
+
+    handleAddingItems = obj => {
+        this.setState(prev => {
+            return {
+                registryItems: [...prev.registryItems, obj]
+            };
+        });
+    };
+
+    handleRemoveItems = obj => {
+        this.setState(prev => {
+            return {
+                registryItems: prev.registryItems.filter(item => {
+                    return item.product_id !== obj.product_id;
+                })
+            };
+        });
+    };
 
     render() {
         let { registryType } = this.props;
@@ -25,9 +51,31 @@ class Registry extends Component {
                     }`}
                 />
 
-                <button>manage items</button>
-                <button>add items</button>
-                <ProductList products={this.props.products} />
+                <button
+                    onClick={e => {
+                        return this.handleItemsDisplay(e, "manageItems");
+                    }}
+                >
+                    manage items
+                </button>
+                <button
+                    onClick={e => {
+                        return this.handleItemsDisplay(e, "addItems");
+                    }}
+                >
+                    add items
+                </button>
+                {this.state.addItems ? (
+                    <ProductList
+                        products={this.props.products}
+                        handleAddingItems={this.handleAddingItems}
+                    />
+                ) : (
+                    <RegistryItemList
+                        handleRemoveItems={this.handleRemoveItems}
+                        registryItems={this.state.registryItems}
+                    />
+                )}
             </div>
         );
     }
