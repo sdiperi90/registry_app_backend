@@ -1,0 +1,18 @@
+.registry-container {
+    width: 100%;
+}
+
+.registry-img-container {
+    width: 100%;
+    img {
+        width: 100%;
+    }
+}
+
+.baby-background {
+    @include registryBackground("../images/baby-registry3.jpg");
+}
+
+.wedding-background {
+    @include registryBackground("../images/couple2.jpeg");
+}

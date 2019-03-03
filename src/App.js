@@ -6,25 +6,46 @@ import Home from "./components/Home";
 import Footer from "./components/Footer";
 import SignUp from "./components/SignUp";
 import CreateRegistry from "./components/CreateRegistry";
-import UserRegistry from "./components/UserRegistry";
+import Registry from "./components/Registry";
+import Cookies from "universal-cookie";
 import axios from "axios";
-
+const cookies = new Cookies();
 class App extends Component {
     state = {
         headerOffset: "",
-        user: ""
+        user: "",
+        registryType: "",
+        products: null
     };
 
     componentDidMount = async () => {
         let user = await axios("/auth/current_user");
         console.log(user);
         this.setState({
-            user: user.data
+            user: user.data,
+            registryType: cookies.get("registryType")
+        });
+        this.getProductData();
+    };
+
+    getProductData = async () => {
+        let products = await axios("/api/products");
+        console.log(products);
+        this.setState({
+            products: products.data
         });
     };
 
     getOffsetHeight = height => {
         this.setState({ headerOffset: height });
+    };
+
+    getRegistryType = registry => {
+        cookies.set("registryType", registry, { path: "/" });
+
+        this.setState({
+            registryType: cookies.get("registryType")
+        });
     };
 
     render() {
@@ -50,14 +71,25 @@ class App extends Component {
                         render={() => (
                             <CreateRegistry
                                 headerOffset={this.state.headerOffset}
+                                user={this.state.user}
+                                getRegistryType={this.getRegistryType}
                             />
                         )}
                     />
 
                     <Route
                         exact
-                        path="/user/registry"
-                        render={() => <UserRegistry />}
+                        path="/registry"
+                        render={() => {
+                            return this.state.products ? (
+                                <Registry
+                                    registryType={this.state.registryType}
+                                    products={this.state.products}
+                                />
+                            ) : (
+                                "Loading..."
+                            );
+                        }}
                     />
                 </main>
 

@@ -1,3 +1,4 @@
+@import "mixins";
 @import "colors";
 @import "reset";
 @import "header";
@@ -6,5 +7,8 @@
 @import "footer";
 @import "signUp";
 @import "create-registry";
+@import "registry";
+@import "productlist";
+@import "product";
 
 @import "media_queries";

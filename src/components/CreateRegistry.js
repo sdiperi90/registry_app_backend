@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Link } from "react-router-dom";
+import { Link, Redirect, withRouter } from "react-router-dom";
 import axios from "axios";
 
 class CreateRegistry extends Component {
@@ -27,19 +27,29 @@ class CreateRegistry extends Component {
             host_1: `${this.state.host1_firstname} ${
                 this.state.host1_lastname
             }`,
-            host_2: `${this.state.host2_firstname} ${this.state.host2_lastname}`
+            host_2: `${this.state.host2_firstname} ${
+                this.state.host2_lastname
+            }`,
+            user_id: this.props.user.user_id
         };
+
+        this.props.getRegistryType(this.state.event);
         console.log(newEvent);
 
-        await axios.post("http://localhost:5000/event", newEvent);
+        await axios.post("/api/event", newEvent);
 
         this.setState({
             events: newEvent,
             created: true
         });
+
+        // this.props.history.push("/registry");
     };
 
     render() {
+        if (this.state.created === true) {
+            return <Redirect to="/registry" />;
+        }
         console.log(this.state);
         return (
             <div className="create-registry-container">
@@ -88,9 +98,8 @@ class CreateRegistry extends Component {
                         />
                         <input name="host2_lastname" placeholder="last name" />
                     </div>
-                    {/* <Link to="user/registry"> */}
+
                     <button>create my registry</button>
-                    {/* </Link> */}
                 </form>
             </div>
         );

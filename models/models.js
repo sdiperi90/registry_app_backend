@@ -63,6 +63,7 @@ const Product = db.define("product", {
         autoIncrement: true
     },
     product_name: Sequelize.STRING,
+    product_description: Sequelize.STRING,
     img: Sequelize.STRING,
     price: Sequelize.STRING,
     link: Sequelize.STRING

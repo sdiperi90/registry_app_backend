@@ -6,7 +6,7 @@ const { Event } = require("../models/models");
 const ensureAuthenticated = require("../middleware/ensureAuthenticated");
 
 module.exports = app => {
-    app.get("/event", async (req, res) => {
+    app.get("/api/event", async (req, res) => {
         try {
             res.send("Hello");
             console.log("working");
@@ -18,7 +18,7 @@ module.exports = app => {
         }
     });
 
-    app.post("/event", async (req, res) => {
+    app.post("/api/event", async (req, res) => {
         try {
             console.log("working", req.body);
             await Event.create(req.body);
