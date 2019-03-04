@@ -3,48 +3,20 @@ import ProductList from "../components/ProductList";
 import RegistryItemList from "../components/RegistryItemList";
 
 class Registry extends Component {
-    state = {
-        manageItems: false,
-        addItems: false,
-        registryItems: []
-    };
-
-    handleItemsDisplay = (e, btn) => {
-        e.preventDefault();
-        if (btn == "manageItems") {
-            this.setState({ manageItems: true, addItems: false });
-        } else {
-            this.setState({ manageItems: false, addItems: true });
-        }
-    };
-
-    handleAddingItems = obj => {
-        this.setState(prev => {
-            return {
-                registryItems: [...prev.registryItems, obj]
-            };
-        });
-    };
-
-    handleRemoveItems = obj => {
-        this.setState(prev => {
-            return {
-                registryItems: prev.registryItems.filter(item => {
-                    return item.product_id !== obj.product_id;
-                })
-            };
-        });
-    };
-
     render() {
-        let { registryType } = this.props;
+        let {
+            products,
+            registryType,
+            registryItems,
+            handleAddingItems,
+            handleRemoveItems,
+            handleItemsDisplay,
+            manageItems,
+            addItems
+        } = this.props;
         let registryTypeClass = `${registryType.split(" ")[0]}-background`;
         return (
             <div className="registry-container">
-                {/* <div>
-                    <p>your registry items</p>
-                    <p>add products</p>
-                </div> */}
                 <div
                     className={`registry-img-container ${
                         registryType ? registryTypeClass : ""
@@ -53,27 +25,27 @@ class Registry extends Component {
 
                 <button
                     onClick={e => {
-                        return this.handleItemsDisplay(e, "manageItems");
+                        return handleItemsDisplay(e, "manageItems");
                     }}
                 >
                     manage items
                 </button>
                 <button
                     onClick={e => {
-                        return this.handleItemsDisplay(e, "addItems");
+                        return handleItemsDisplay(e, "addItems");
                     }}
                 >
                     add items
                 </button>
-                {this.state.addItems ? (
+                {addItems ? (
                     <ProductList
-                        products={this.props.products}
-                        handleAddingItems={this.handleAddingItems}
+                        products={products}
+                        handleAddingItems={handleAddingItems}
                     />
                 ) : (
                     <RegistryItemList
-                        handleRemoveItems={this.handleRemoveItems}
-                        registryItems={this.state.registryItems}
+                        handleRemoveItems={handleRemoveItems}
+                        registryItems={registryItems}
                     />
                 )}
             </div>

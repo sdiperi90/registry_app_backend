@@ -16,3 +16,10 @@
 .wedding-background {
     @include registryBackground("../images/couple2.jpeg");
 }
+
+.row {
+    a,
+    h3 {
+        padding: 0px 5px;
+    }
+}

@@ -10,7 +10,7 @@ module.exports = app => {
         try {
             let products = await Product.findAll({ raw: true });
             console.log(products);
-            res.send(products);
+            res.json(products);
             console.log("working");
         } catch (error) {
             console.log(error);

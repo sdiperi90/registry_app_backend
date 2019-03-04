@@ -28,6 +28,7 @@ app.use(passport.session());
 require("./routes/authRoutes")(app);
 require("./routes/event")(app);
 require("./routes/product")(app);
+require("./routes/present")(app);
 
 app.get("/", (req, res) => {
     res.send("Working");

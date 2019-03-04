@@ -6,10 +6,17 @@ const { Event } = require("../models/models");
 const ensureAuthenticated = require("../middleware/ensureAuthenticated");
 
 module.exports = app => {
-    app.get("/api/event", async (req, res) => {
+    app.get("/api/event/:id", async (req, res) => {
         try {
-            res.send("Hello");
-            console.log("working");
+            let id = req.params.id;
+            console.log(req.params);
+            let events = await Event.findAll({
+                where: {
+                    user_id: id
+                },
+                raw: true
+            });
+            res.json(events);
         } catch (error) {
             console.log(error);
             res.status(500).json({
@@ -21,13 +28,15 @@ module.exports = app => {
     app.post("/api/event", async (req, res) => {
         try {
             console.log("working", req.body);
-            await Event.create(req.body);
-            res.send(true);
+            let event = await Event.create(req.body);
+            res.status(200).json(event.event_id);
+            return;
         } catch (error) {
             console.log(error);
-            res.status(500).json({
+            res.json({
                 message: error.message
             });
+            return;
         }
     });
 };

@@ -42,6 +42,7 @@ class CreateRegistry extends Component {
             events: newEvent,
             created: true
         });
+        console.log(this.state.events);
 
         // this.props.history.push("/registry");
     };
@@ -50,7 +51,7 @@ class CreateRegistry extends Component {
         if (this.state.created === true) {
             return <Redirect to="/registry" />;
         }
-        console.log(this.state);
+        console.log(this.state.events);
         return (
             <div className="create-registry-container">
                 <h1>Create Registry</h1>

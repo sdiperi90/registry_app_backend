@@ -9,13 +9,19 @@ import CreateRegistry from "./components/CreateRegistry";
 import Registry from "./components/Registry";
 import Cookies from "universal-cookie";
 import axios from "axios";
+import Dashboard from "./components/Dashboard";
 const cookies = new Cookies();
+
 class App extends Component {
     state = {
         headerOffset: "",
         user: "",
         registryType: "",
-        products: null
+        products: null,
+        events: [],
+        manageItems: false,
+        addItems: false,
+        registryItems: []
     };
 
     componentDidMount = async () => {
@@ -26,6 +32,15 @@ class App extends Component {
             registryType: cookies.get("registryType")
         });
         this.getProductData();
+        this.fetchEvent();
+    };
+
+    fetchEvent = async () => {
+        let events = await axios(`/api/event/${this.state.user.user_id}`);
+        this.setState({
+            events: events.data
+        });
+        console.log(events);
     };
 
     getProductData = async () => {
@@ -48,20 +63,68 @@ class App extends Component {
         });
     };
 
+    handleItemsDisplay = (e, btn) => {
+        e.preventDefault();
+        if (btn == "manageItems") {
+            this.setState({ manageItems: true, addItems: false });
+        } else {
+            this.setState({ manageItems: false, addItems: true });
+        }
+    };
+
+    handleAddingItems = async obj => {
+        this.setState(prev => {
+            return {
+                registryItems: [...prev.registryItems, obj]
+            };
+        });
+        console.log("working");
+
+        // let newItem = {
+        //     purchased: false,
+        //     favorites: false,
+        //     // event_id: this.state.year_built,
+        //     product_id: obj.product_id
+        // };
+        // console.log(newItem);
+
+        // await axios.post("/api/presents", newBuilding);
+
+        // this.setState({
+        //     building: newBuilding,
+        //     created: true
+        // });
+    };
+
+    handleRemoveItems = obj => {
+        this.setState(prev => {
+            return {
+                registryItems: prev.registryItems.filter(item => {
+                    return item.product_id !== obj.product_id;
+                })
+            };
+        });
+    };
+
     render() {
+        let {
+            headerOffset,
+            products,
+            user,
+            registryType,
+            events,
+            registryItems,
+            manageItems,
+            addItems
+        } = this.state;
         return (
             <div className="App">
-                <Header
-                    getOffsetHeight={this.getOffsetHeight}
-                    user={this.state.user}
-                />
-                <main style={{ paddingTop: `${this.state.headerOffset}px` }}>
+                <Header getOffsetHeight={this.getOffsetHeight} user={user} />
+                <main style={{ paddingTop: `${headerOffset}px` }}>
                     <Route
                         exact
                         path="/"
-                        render={() => (
-                            <Home headerOffset={this.state.headerOffset} />
-                        )}
+                        render={() => <Home headerOffset={headerOffset} />}
                     />
 
                     <Route exact path="/signup" render={() => <SignUp />} />
@@ -70,8 +133,8 @@ class App extends Component {
                         path="/registry/create"
                         render={() => (
                             <CreateRegistry
-                                headerOffset={this.state.headerOffset}
-                                user={this.state.user}
+                                headerOffset={headerOffset}
+                                user={user}
                                 getRegistryType={this.getRegistryType}
                             />
                         )}
@@ -81,19 +144,52 @@ class App extends Component {
                         exact
                         path="/registry"
                         render={() => {
-                            return this.state.products ? (
+                            return products ? (
                                 <Registry
-                                    registryType={this.state.registryType}
-                                    products={this.state.products}
+                                    registryType={registryType}
+                                    registryItems={registryItems}
+                                    handleItemsDisplay={this.handleItemsDisplay}
+                                    handleAddingItems={this.handleAddingItems}
+                                    handleRemoveItems={this.handleRemoveItems}
+                                    products={products}
+                                    manageItems={manageItems}
+                                    addItems={addItems}
                                 />
                             ) : (
                                 "Loading..."
                             );
                         }}
                     />
-                </main>
 
-                {/* <Home headerOffset={this.state.headerOffset} /> */}
+                    <Route
+                        exact
+                        path="/events/:id"
+                        render={() => {
+                            return products ? (
+                                <Registry
+                                    registryType={registryType}
+                                    registryItems={registryItems}
+                                    handleItemsDisplay={this.handleItemsDisplay}
+                                    handleAddingItems={this.handleAddingItems}
+                                    handleRemoveItems={this.handleRemoveItems}
+                                    products={products}
+                                    manageItems={manageItems}
+                                    addItems={addItems}
+                                />
+                            ) : (
+                                "Loading..."
+                            );
+                        }}
+                    />
+
+                    <Route
+                        exact
+                        path="/dashboard"
+                        render={() => {
+                            return <Dashboard user={user} events={events} />;
+                        }}
+                    />
+                </main>
                 <Footer />
             </div>
         );

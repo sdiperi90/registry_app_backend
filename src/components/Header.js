@@ -26,7 +26,10 @@ class Header extends Component {
                         <span className="title">Perfect Gift</span>
                     </Link>
                     {this.props.user ? (
-                        <div>
+                        <div className="row">
+                            <Link to="/dashboard">
+                                <a>My Registry</a>{" "}
+                            </Link>
                             <h2>Hello {this.props.user.first_name} </h2>
                             <a href="/auth/logout">
                                 <button>Log out</button>

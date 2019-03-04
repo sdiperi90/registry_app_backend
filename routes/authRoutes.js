@@ -17,13 +17,13 @@ module.exports = app => {
         (req, res) => {
             console.log("look what the deseralize user function did@");
             console.log(req.user);
-            res.redirect("/");
+            res.redirect("/dashboard");
         }
     );
 
     // this route is to check if there is user session
     app.get("/auth/current_user", (req, res) => {
-        res.send(req.user);
+        res.json(req.user);
     });
 
     app.get("/auth/logout", (req, res) => {
