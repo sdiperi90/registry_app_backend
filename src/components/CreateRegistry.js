@@ -1,26 +1,24 @@
 import React, { Component } from "react";
 import { Link, Redirect, withRouter } from "react-router-dom";
+import validator from "validator";
 import axios from "axios";
 
 class CreateRegistry extends Component {
     state = {
-        events: [],
+        registries: [],
         created: false
     };
     onRegistryFormChange = e => {
         const element = e.target;
         const { name, value } = element;
-        console.log(name, value);
         const newState = {};
         newState[name] = value;
         this.setState(newState);
-        console.log(newState);
     };
 
     onRegistryFormSubmit = async event => {
-        console.log("working");
         event.preventDefault();
-        let newEvent = {
+        let newRegistry = {
             title: this.state.title,
             type: this.state.event,
             date: this.state.date,
@@ -33,25 +31,45 @@ class CreateRegistry extends Component {
             user_id: this.props.user.user_id
         };
 
-        this.props.getRegistryType(this.state.event);
-        console.log(newEvent);
-
-        await axios.post("/api/event", newEvent);
+        let registry = await axios.post("/api/event", newRegistry);
+        let eventId = registry.data;
 
         this.setState({
-            events: newEvent,
+            registries: newRegistry,
             created: true
         });
-        console.log(this.state.events);
+
+        this.props.getRegistryType(this.state.event);
+        this.props.getEventId(eventId);
 
         // this.props.history.push("/registry");
+    };
+
+    validateForm = () => {
+        class FormValidator {
+            constructor(validations) {
+                // validations is an array of form-specific validation rules
+                this.validations = validations;
+            }
+            validate(state) {
+                // iterate through the validation rules and construct
+                // a validation object, and return it
+                return validation;
+            }
+        }
+
+        const validator = new FormValidator([rule1, rule2, rule3]);
+
+        validator.isEmpty(""); // returns true
+        validator.isEmpty("tim@home.com"); // returns false
+        validator.isEmail("tim@home.com"); // returns true
+        validator.isEmail("go away"); // return false
     };
 
     render() {
         if (this.state.created === true) {
             return <Redirect to="/registry" />;
         }
-        console.log(this.state.events);
         return (
             <div className="create-registry-container">
                 <h1>Create Registry</h1>

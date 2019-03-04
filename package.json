@@ -21,7 +21,8 @@
         "react-scripts": "2.1.5",
         "react-scrollable-anchor": "^0.6.1",
         "sequelize": "^4.42.1",
-        "universal-cookie": "^3.0.7"
+        "universal-cookie": "^3.0.7",
+        "validator": "^10.11.0"
     },
     "scripts": {
         "build": "react-scripts build",

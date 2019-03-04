@@ -11,9 +11,12 @@ class Registry extends Component {
             handleAddingItems,
             handleRemoveItems,
             handleItemsDisplay,
+            fetchRegistryItem,
             manageItems,
-            addItems
+            addItems,
+            eventId
         } = this.props;
+
         let registryTypeClass = `${registryType.split(" ")[0]}-background`;
         return (
             <div className="registry-container">
@@ -46,6 +49,8 @@ class Registry extends Component {
                     <RegistryItemList
                         handleRemoveItems={handleRemoveItems}
                         registryItems={registryItems}
+                        eventId={eventId}
+                        fetchRegistryItem={fetchRegistryItem}
                     />
                 )}
             </div>

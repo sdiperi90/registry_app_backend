@@ -19,6 +19,7 @@ class App extends Component {
         registryType: "",
         products: null,
         events: [],
+        eventId: null,
         manageItems: false,
         addItems: false,
         registryItems: []
@@ -26,13 +27,14 @@ class App extends Component {
 
     componentDidMount = async () => {
         let user = await axios("/auth/current_user");
-        console.log(user);
         this.setState({
             user: user.data,
-            registryType: cookies.get("registryType")
+            registryType: cookies.get("registryType"),
+            eventId: cookies.get("event_id")
         });
         this.getProductData();
         this.fetchEvent();
+        // this.fetchRegistryItem();
     };
 
     fetchEvent = async () => {
@@ -40,12 +42,10 @@ class App extends Component {
         this.setState({
             events: events.data
         });
-        console.log(events);
     };
 
     getProductData = async () => {
         let products = await axios("/api/products");
-        console.log(products);
         this.setState({
             products: products.data
         });
@@ -60,6 +60,14 @@ class App extends Component {
 
         this.setState({
             registryType: cookies.get("registryType")
+        });
+    };
+
+    getEventId = id => {
+        cookies.set("event_id", id, { path: "/" });
+
+        this.setState({
+            eventId: cookies.get("event_id")
         });
     };
 
@@ -78,17 +86,15 @@ class App extends Component {
                 registryItems: [...prev.registryItems, obj]
             };
         });
-        console.log("working");
 
-        // let newItem = {
-        //     purchased: false,
-        //     favorites: false,
-        //     // event_id: this.state.year_built,
-        //     product_id: obj.product_id
-        // };
-        // console.log(newItem);
+        let newItem = {
+            purchased: false,
+            favorites: false,
+            event_id: this.state.eventId,
+            product_id: obj.product_id
+        };
 
-        // await axios.post("/api/presents", newBuilding);
+        await axios.post("/api/presents", newItem);
 
         // this.setState({
         //     building: newBuilding,
@@ -106,6 +112,27 @@ class App extends Component {
         });
     };
 
+    fetchRegistryItem = async () => {
+        let registryItems = await axios(`/api/presents/4`);
+        if (registryItems) {
+            let addedItems = registryItems.data.map(item => {
+                // console.log(item["product.img"]);
+                return {
+                    img: item["product.img"],
+                    price: item["product.price"],
+                    product_description: item["product.product_description"],
+                    product_name: item["product.product_name"]
+                };
+            });
+
+            this.setState({
+                registryItems: addedItems
+            });
+        }
+
+        console.log(registryItems.data);
+    };
+
     render() {
         let {
             headerOffset,
@@ -115,7 +142,8 @@ class App extends Component {
             events,
             registryItems,
             manageItems,
-            addItems
+            addItems,
+            eventId
         } = this.state;
         return (
             <div className="App">
@@ -136,6 +164,7 @@ class App extends Component {
                                 headerOffset={headerOffset}
                                 user={user}
                                 getRegistryType={this.getRegistryType}
+                                getEventId={this.getEventId}
                             />
                         )}
                     />
@@ -154,6 +183,7 @@ class App extends Component {
                                     products={products}
                                     manageItems={manageItems}
                                     addItems={addItems}
+                                    eventId={eventId}
                                 />
                             ) : (
                                 "Loading..."
@@ -175,6 +205,8 @@ class App extends Component {
                                     products={products}
                                     manageItems={manageItems}
                                     addItems={addItems}
+                                    eventId={eventId}
+                                    fetchRegistryItem={this.fetchRegistryItem}
                                 />
                             ) : (
                                 "Loading..."
@@ -186,7 +218,13 @@ class App extends Component {
                         exact
                         path="/dashboard"
                         render={() => {
-                            return <Dashboard user={user} events={events} />;
+                            return (
+                                <Dashboard
+                                    user={user}
+                                    events={events}
+                                    getEventId={this.getEventId}
+                                />
+                            );
                         }}
                     />
                 </main>

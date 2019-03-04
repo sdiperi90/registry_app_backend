@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 
 class Dashboard extends Component {
     render() {
-        let { user, events } = this.props;
+        let { user, events, getEventId } = this.props;
         return (
             <div className="dashboard">
                 {events.length == 0 ? (
@@ -19,7 +19,12 @@ class Dashboard extends Component {
                     events.map(event => {
                         return (
                             <Link to={`/events/${event.event_id}`}>
-                                <div className="registry-list">
+                                <div
+                                    className="registry-list"
+                                    onClick={e => {
+                                        getEventId(event.event_id);
+                                    }}
+                                >
                                     <h1>{event.type}</h1> <h2>{event.title}</h2>
                                     <p>on {event.date}</p>
                                 </div>

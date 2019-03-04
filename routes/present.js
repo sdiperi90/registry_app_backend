@@ -2,14 +2,22 @@
 //  ************ PRESENT ROUTES **************
 // ----------------------------------------
 
-const { Present } = require("../models/models");
+const { Present, Product } = require("../models/models");
 const ensureAuthenticated = require("../middleware/ensureAuthenticated");
 
 module.exports = app => {
-    app.get("/api/presents", async (req, res) => {
+    app.get("/api/presents/:id", async (req, res) => {
         try {
-            res.json("Hello");
-            console.log("working");
+            let registryItems = await Present.findAll({
+                where: {
+                    event_id: req.params.id
+                    // product_id: req.event_id
+                },
+                include: [Product],
+                raw: true
+            });
+            console.log(registryItems);
+            res.json(registryItems);
         } catch (error) {
             console.log(error);
             res.status(500).json({

@@ -4,7 +4,6 @@ import { Link } from "react-router-dom";
 class Header extends Component {
     componentDidMount() {
         let { offsetHeight } = this.refs.header;
-        console.log(this.refs.header.offsetHeight);
         this.props.getOffsetHeight(offsetHeight);
     }
 
