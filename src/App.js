@@ -65,6 +65,7 @@ class App extends Component {
     };
 
     getEventId = id => {
+        console.log(id);
         cookies.set("event_id", id, { path: "/" });
 
         this.setState({
@@ -128,7 +129,7 @@ class App extends Component {
     };
 
     fetchRegistryItem = async () => {
-        let registryItems = await axios(`/api/presents/${this.state.event_id}`);
+        let registryItems = await axios(`/api/presents/${this.state.eventId}`);
         if (registryItems.data.length > 0) {
             let addedItems = registryItems.data.map(item => {
                 // console.log(item["product.img"]);
@@ -139,12 +140,16 @@ class App extends Component {
                     product_name: item["product.product_name"],
                     product_id: item["product.product_id"],
                     event_id: item.event_id,
-                    present_id: item.present_id
+                    present_id: item.present_id,
+                    registryType: item["event.type"]
                 };
             });
 
+            console.log("working", registryItems.data[0]);
+
             this.setState({
-                registryItems: addedItems
+                registryItems: addedItems,
+                registryType: registryItems.data[0]["event.type"]
             });
         }
     };
@@ -168,7 +173,13 @@ class App extends Component {
                     <Route
                         exact
                         path="/"
-                        render={() => <Home headerOffset={headerOffset} />}
+                        render={() => (
+                            <Home
+                                headerOffset={headerOffset}
+                                getEventId={this.getEventId}
+                                fetchRegistryItem={this.fetchRegistryItem}
+                            />
+                        )}
                     />
                     <Route exact path="/signup" render={() => <SignUp />} />
                     <Route
@@ -242,14 +253,18 @@ class App extends Component {
                     />
                     <Route
                         exact
-                        path="/registry/:event_id"
+                        path="/registry/search/:event_id"
                         render={() => {
-                            return (
+                            return this.state.eventId ? (
                                 <RegistrySearchResult
-                                    user={user}
-                                    events={events}
                                     getEventId={this.getEventId}
+                                    registryType={registryType}
+                                    registryItems={registryItems}
+                                    fetchRegistryItem={this.fetchRegistryItem}
+                                    registryType={registryType}
                                 />
+                            ) : (
+                                "Loading..."
                             );
                         }}
                     />

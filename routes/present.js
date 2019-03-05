@@ -2,18 +2,19 @@
 //  ************ PRESENT ROUTES **************
 // ----------------------------------------
 
-const { Present, Product } = require("../models/models");
+const { Present, Product, Event } = require("../models/models");
 const ensureAuthenticated = require("../middleware/ensureAuthenticated");
 
 module.exports = app => {
     app.get("/api/presents/:id", async (req, res) => {
         try {
+            console.log(req.params);
             let registryItems = await Present.findAll({
                 where: {
                     event_id: req.params.id
                     // product_id: req.event_id
                 },
-                include: [Product],
+                include: [Product, Event],
                 raw: true
             });
             console.log(registryItems);

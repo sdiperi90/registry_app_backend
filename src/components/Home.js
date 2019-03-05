@@ -4,19 +4,17 @@ import SearchRegistry from "./SearchRegistry";
 
 class Home extends Component {
     render() {
+        let { getEventId, fetchRegistryItem } = this.props;
+        console.log(fetchRegistryItem);
         return (
             <div>
                 <div className="home-page-img">
                     <img src={require("../images/weddinggiftlistideas.jpg")} />
-                    {/* <div className="event-icons">
-                        <div>
-                            <img src={require("../images/stroller.svg")} />
-                            <img src={require("../images/ring.png")} />
-                        </div>
-                        <button>Create registry</button>
-                    </div> */}
                 </div>
-                <SearchRegistry />
+                <SearchRegistry
+                    fetchRegistryItem={fetchRegistryItem}
+                    getEventId={getEventId}
+                />
 
                 <div className="img-container">
                     <div>
