@@ -16,16 +16,20 @@ class RegistryItemList extends Component {
         } = this.props;
         return (
             <div className="productlist-container">
-                {registryItems.map(product => {
-                    return (
-                        <Product
-                            key={product.product_id}
-                            product={product}
-                            buttonText={"Remove Item"}
-                            handleChangeItems={handleRemoveItems}
-                        />
-                    );
-                })}
+                {registryItems.length > 0 ? (
+                    registryItems.map(product => {
+                        return (
+                            <Product
+                                key={product.product_id}
+                                product={product}
+                                buttonText={"Remove Item"}
+                                handleChangeItems={handleRemoveItems}
+                            />
+                        );
+                    })
+                ) : (
+                    <p>Your have 0 items in registry</p>
+                )}
             </div>
         );
     }

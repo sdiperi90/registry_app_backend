@@ -8,6 +8,15 @@ class CreateRegistry extends Component {
         registries: [],
         created: false
     };
+
+    componentDidMount() {
+        console.log(this.state);
+        console.log(
+            validator.toDate("04/05/2019"),
+            validator.isISO8601("04-07-2019"),
+            validator.isRFC3339("October 26, 2017")
+        );
+    }
     onRegistryFormChange = e => {
         const element = e.target;
         const { name, value } = element;
@@ -41,30 +50,9 @@ class CreateRegistry extends Component {
 
         this.props.getRegistryType(this.state.event);
         this.props.getEventId(eventId);
-
-        // this.props.history.push("/registry");
     };
 
-    validateForm = () => {
-        class FormValidator {
-            constructor(validations) {
-                // validations is an array of form-specific validation rules
-                this.validations = validations;
-            }
-            validate(state) {
-                // iterate through the validation rules and construct
-                // a validation object, and return it
-                return validation;
-            }
-        }
-
-        const validator = new FormValidator([rule1, rule2, rule3]);
-
-        validator.isEmpty(""); // returns true
-        validator.isEmpty("tim@home.com"); // returns false
-        validator.isEmail("tim@home.com"); // returns true
-        validator.isEmail("go away"); // return false
-    };
+    validateForm = (eventType, date, title, name1, name2) => {};
 
     render() {
         if (this.state.created === true) {

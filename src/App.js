@@ -81,12 +81,6 @@ class App extends Component {
     };
 
     handleAddingItems = async obj => {
-        this.setState(prev => {
-            return {
-                registryItems: [...prev.registryItems, obj]
-            };
-        });
-
         let newItem = {
             purchased: false,
             favorites: false,
@@ -94,15 +88,35 @@ class App extends Component {
             product_id: obj.product_id
         };
 
-        await axios.post("/api/presents", newItem);
+        let registryItems = await axios.post("/api/presents", newItem);
+        console.log(registryItems.data);
 
-        // this.setState({
-        //     building: newBuilding,
-        //     created: true
-        // });
+        if (registryItems.data.length > 0) {
+            let addedItems = registryItems.data.map(item => {
+                // console.log(item["product.img"]);
+                return {
+                    img: item["product.img"],
+                    price: item["product.price"],
+                    product_description: item["product.product_description"],
+                    product_name: item["product.product_name"],
+                    product_id: item["product.product_id"],
+                    event_id: item.event_id,
+                    present_id: item.present_id
+                };
+            });
+
+            this.setState({
+                registryItems: addedItems
+            });
+        }
     };
 
-    handleRemoveItems = obj => {
+    handleRemoveItems = async obj => {
+        console.log(obj);
+        let updatedRegistryItem = await axios.delete(
+            `/api/presents/${obj.present_id}`
+        );
+        console.log(obj);
         this.setState(prev => {
             return {
                 registryItems: prev.registryItems.filter(item => {
@@ -113,15 +127,18 @@ class App extends Component {
     };
 
     fetchRegistryItem = async () => {
-        let registryItems = await axios(`/api/presents/4`);
-        if (registryItems) {
+        let registryItems = await axios(`/api/presents/${this.state.event_id}`);
+        if (registryItems.data.length > 0) {
             let addedItems = registryItems.data.map(item => {
                 // console.log(item["product.img"]);
                 return {
                     img: item["product.img"],
                     price: item["product.price"],
                     product_description: item["product.product_description"],
-                    product_name: item["product.product_name"]
+                    product_name: item["product.product_name"],
+                    product_id: item["product.product_id"],
+                    event_id: item.event_id,
+                    present_id: item.present_id
                 };
             });
 
@@ -129,8 +146,6 @@ class App extends Component {
                 registryItems: addedItems
             });
         }
-
-        console.log(registryItems.data);
     };
 
     render() {

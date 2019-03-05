@@ -15,8 +15,8 @@ module.exports = app => {
         "/auth/google/callback",
         passport.authenticate("google"),
         (req, res) => {
-            console.log("look what the deseralize user function did@");
-            console.log(req.user);
+            // console.log("look what the deseralize user function did@");
+            // // console.log(req.user);
             res.redirect("/dashboard");
         }
     );
