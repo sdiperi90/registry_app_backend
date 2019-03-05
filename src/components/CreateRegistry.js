@@ -6,22 +6,26 @@ import axios from "axios";
 class CreateRegistry extends Component {
     state = {
         registries: [],
-        created: false
+        created: false,
+        event: null,
+        date: null,
+        title: null,
+        host1_firstname: null,
+        host1_lastname: null,
+        host2_firstname: null,
+        host2_lastname: null,
+        error: false
     };
 
     componentDidMount() {
         console.log(this.state);
-        console.log(
-            validator.toDate("04/05/2019"),
-            validator.isISO8601("04-07-2019"),
-            validator.isRFC3339("October 26, 2017")
-        );
     }
     onRegistryFormChange = e => {
         const element = e.target;
         const { name, value } = element;
         const newState = {};
         newState[name] = value;
+        console.log(newState);
         this.setState(newState);
     };
 
@@ -52,7 +56,7 @@ class CreateRegistry extends Component {
         this.props.getEventId(eventId);
     };
 
-    validateForm = (eventType, date, title, name1, name2) => {};
+    validateForm = () => {};
 
     render() {
         if (this.state.created === true) {
@@ -69,19 +73,23 @@ class CreateRegistry extends Component {
                         this.onRegistryFormChange(e);
                     }}
                 >
-                    <label for="event">Select Event Type</label>
-                    <select name="event">
-                        <option diabled>Select day</option>
-                        <option value="wedding">Wedding</option>
-                        <option value="baby shower">Baby Shower</option>
-                    </select>
+                    <div>
+                        <label for="event">Select Event Type</label>
+                        <select name="event" required>
+                            <option value="">None</option>
+                            <option value="wedding">Wedding</option>
+                            <option value="baby shower">Baby Shower</option>
+                        </select>
+                        {this.state.event ? "" : <p>please fill the field</p>}
+                    </div>
                     <div>
                         <label for="date">What date is your event</label>
-                        <input name="date" placeholder="mm/dd/yy" />
+                        <input name="date" placeholder="mm/dd/yy" required />
                     </div>
                     <div>
                         <label for="title">Event Title</label>
                         <input
+                            required
                             name="title"
                             placeholder="example: Bella and Andrew's wedding"
                         />
@@ -90,20 +98,30 @@ class CreateRegistry extends Component {
                     <div>
                         <label for="host1_firstname">Your name</label>
                         <input
+                            required
                             name="host1_firstname"
                             placeholder="first name"
                         />
-                        <input name="host1_lastname" placeholder="last name" />
+                        <input
+                            required
+                            name="host1_lastname"
+                            placeholder="last name"
+                        />
                     </div>
                     <div>
                         <label for="host2_firstname">
                             Your partner's name (optional)
                         </label>
                         <input
+                            required
                             name="host2_firstname"
                             placeholder="first name"
                         />
-                        <input name="host2_lastname" placeholder="last name" />
+                        <input
+                            required
+                            name="host2_lastname"
+                            placeholder="last name"
+                        />
                     </div>
 
                     <button>create my registry</button>

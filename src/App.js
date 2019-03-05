@@ -199,6 +199,7 @@ class App extends Component {
                                     manageItems={manageItems}
                                     addItems={addItems}
                                     eventId={eventId}
+                                    fetchRegistryItem={this.fetchRegistryItem}
                                 />
                             ) : (
                                 "Loading..."
