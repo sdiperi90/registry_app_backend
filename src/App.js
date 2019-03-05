@@ -10,6 +10,7 @@ import Registry from "./components/Registry";
 import Cookies from "universal-cookie";
 import axios from "axios";
 import Dashboard from "./components/Dashboard";
+import RegistrySearchResult from "./components/RegistrySearchResult";
 const cookies = new Cookies();
 
 class App extends Component {
@@ -169,7 +170,6 @@ class App extends Component {
                         path="/"
                         render={() => <Home headerOffset={headerOffset} />}
                     />
-
                     <Route exact path="/signup" render={() => <SignUp />} />
                     <Route
                         exact
@@ -183,7 +183,6 @@ class App extends Component {
                             />
                         )}
                     />
-
                     <Route
                         exact
                         path="/registry"
@@ -206,7 +205,6 @@ class App extends Component {
                             );
                         }}
                     />
-
                     <Route
                         exact
                         path="/events/:id"
@@ -229,7 +227,6 @@ class App extends Component {
                             );
                         }}
                     />
-
                     <Route
                         exact
                         path="/dashboard"
@@ -243,7 +240,22 @@ class App extends Component {
                             );
                         }}
                     />
+                    <Route
+                        exact
+                        path="/registry/:event_id"
+                        render={() => {
+                            return (
+                                <RegistrySearchResult
+                                    user={user}
+                                    events={events}
+                                    getEventId={this.getEventId}
+                                />
+                            );
+                        }}
+                    />
+                    s
                 </main>
+
                 <Footer />
             </div>
         );

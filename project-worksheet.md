@@ -7,10 +7,10 @@
 | Day 1 | February 28 | Project Description                                                                   | Complete   |
 | Day 1 | February 28 | Wireframes / Priority Matrix / Functional Components                                  | Complete   |
 | Day 1 | February 28 | Login with Google oauth                                                               | Complete   |
-| Day 2 | March 1     | Core Application Structure (HTML, CSS, etc.)                                          | Incomplete |
-| Day 3 | March 2     | Pseudocode / actual code                                                              | Incomplete |
-| Day 4 | March 3     | CRUD on Registry (create, edit, delete registry)                                      | Incomplete |
-| Day 5 | March 4     | CRUD on Presents (create, delete, update presents list)                               | Incomplete |
+| Day 2 | March 1     | Core Application Structure (HTML, CSS, etc.)                                          | Complete   |
+| Day 3 | March 2     | Pseudocode / actual code                                                              | Complete   |
+| Day 4 | March 3     | Create and Reade on Registry (create, edit, delete registry)                          | Complete   |
+| Day 5 | March 4     | CRD on Presents (create, delete, update presents list)                                | Complete   |
 | Day 6 | March 5     | Conditional rendering presents list (view all, purchased, remaining items, favorites) | Incomplete |
 | Day 7 | March 6     | Present                                                                               | Incomplete |
 
@@ -67,16 +67,15 @@ https://drive.google.com/drive/u/0/folders/1sCyJ0LnFqWSAtttzIwKgoFhHRamKEURC?ths
 
 | Component      | Priority | Estimated Time | Actual Time |
 | -------------- | :------: | :------------: | :---------: |
-| Home           |    H     |      4hrs      |     ...     |
-| Login          |    H     |      8hrs      |     ...     |
-| Sign Up        |    H     |      4hrs      |     ...     |
+| Home           |    H     |      4hrs      |      5      |
+| Login          |    H     |      8hrs      |     10      |
 | SearchRegistry |    H     |     12hrs      |     ...     |
-| RegistryResult |    H     |     12hrs      |     ...     |
-| ProductList    |    H     |      2hrs      |     ...     |
-| ProductItem    |    H     |      6hrs      |     ...     |
-| CreateRegistry |    H     |      8hrs      |     ...     |
-| RegistryList   |    H     |      2hrs      |     ...     |
-| RegistryItem   |    H     |      8hrs      |     ...     |
+| RegistryResult |    H     |     12hrs      |     10      |
+| ProductList    |    H     |      2hrs      |      6      |
+| ProductItem    |    H     |      6hrs      |      8      |
+| CreateRegistry |    H     |      8hrs      |      6      |
+| RegistryList   |    H     |      2hrs      |      3      |
+| RegistryItem   |    H     |      8hrs      |     10      |
 | Total          |    H     |     58hrs      |     ...     |
 
 ## Helper Functions
