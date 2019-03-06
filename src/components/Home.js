@@ -16,20 +16,24 @@ class Home extends Component {
                     getEventId={getEventId}
                 />
 
-                <div className="img-container">
-                    <div>
-                        <img src="https://www-static.weddingbee.com/wp-content/uploads/2017/08/couple-with-wedding-gifts-268838.jpg" />
+                <div>
+                    <div create-registry-btn>
+                        <Link to="/registry/create">
+                            <button className="create-registry-btn">
+                                Create Registry
+                            </button>
+                        </Link>
                     </div>
-                    <div>
-                        <img
-                            src={require("../images/baby-shower-gifts-5.jpg")}
-                        />
+                    <div className="img-container">
+                        <div>
+                            <img src="https://www-static.weddingbee.com/wp-content/uploads/2017/08/couple-with-wedding-gifts-268838.jpg" />
+                        </div>
+                        <div>
+                            <img
+                                src={require("../images/baby-shower-gifts-5.jpg")}
+                            />
+                        </div>
                     </div>
-                    <Link to="/registry/create">
-                        <button className="create-registry-btn">
-                            Create Registry
-                        </button>
-                    </Link>
                 </div>
             </div>
         );

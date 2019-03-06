@@ -80,24 +80,19 @@ https://drive.google.com/drive/u/0/folders/1sCyJ0LnFqWSAtttzIwKgoFhHRamKEURC?ths
 
 ## Helper Functions
 
-Helper functions should be generic enought that they can be reused in other applications. Use this section to document all helper functions that fall into this category.
-
-#### SAMPLE.....
-
-| Function   |                        Description                        |
-| ---------- | :-------------------------------------------------------: |
-| Capitalize | This will capitalize the first letter in a string of text |
+| Function          |                                       Description                                       |
+| ----------------- | :-------------------------------------------------------------------------------------: |
+| getRegistryType   | This function takes data as an argument and saves information in webpages using cookies |
+| handleAddingItems |  This function takes an object as an argument and maps through and creates new object   |
 
 ## Additional Libraries
 
 Use this section to list all supporting libraries and thier role in the project.
 
-#### SAMPLE.....
-
-| Library   |           What it Does            |
-| --------- | :-------------------------------: |
-| Bootstrap | Used to help style my application |
-| Giphy API |      Used to get gifs to use      |
+| Library |                                                     What it Does                                                     |
+| ------- | :------------------------------------------------------------------------------------------------------------------: |
+| sass    | It allows you to natively compile .scss files to css at incredible speed and automatically via a connect middleware. |
+|         |                                                                                                                      |
 
 ## Code Snippet
 

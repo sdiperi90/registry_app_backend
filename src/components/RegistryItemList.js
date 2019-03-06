@@ -12,7 +12,8 @@ class RegistryItemList extends Component {
             registryItems,
             handleRemoveItems,
             eventId,
-            fetchRegistryItem
+            fetchRegistryItem,
+            handleModal
         } = this.props;
         return (
             <div className="productlist-container">

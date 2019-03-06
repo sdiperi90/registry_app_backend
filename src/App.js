@@ -23,7 +23,8 @@ class App extends Component {
         eventId: null,
         manageItems: false,
         addItems: false,
-        registryItems: []
+        registryItems: [],
+        productAdded: false
     };
 
     componentDidMount = async () => {
