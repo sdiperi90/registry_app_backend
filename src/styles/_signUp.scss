@@ -19,7 +19,7 @@ Buttons
 
     &::after {
         content: "";
-        position: absolute;
+        // position: absolute;
         z-index: 1;
         top: 0;
         left: 0;
@@ -110,7 +110,7 @@ Form
 Signup
 --------------------*/
 .signup {
-    position: absolute;
+    position: relative;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
@@ -121,6 +121,7 @@ Signup
     box-shadow: 0 3px 25px hsla(0, 0, 0, 0.2);
     overflow: hidden;
     display: flex;
+    margin-top: 250px;
 }
 
 .signup-connect,
@@ -130,7 +131,7 @@ Signup
 }
 
 .signup-connect {
-    background: linear-gradient(134deg, hsl(44, 96%, 65%), hsl(34, 95%, 45%));
+    background: linear-gradient(134deg, hsl(44, 96%, 65%), hsl(34, 71%, 77%));
     color: hsl(0, 0, 100);
 
     h1 {
@@ -142,6 +143,7 @@ Signup
 }
 
 .signup-classic {
+    text-align: center;
     h2 {
         font-size: 16px;
         font-weight: normal;

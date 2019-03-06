@@ -3,35 +3,36 @@ import React, { Component } from "react";
 class SignUp extends Component {
     render() {
         return (
-            <div class="login-wrap">
-                <div class="signup">
-                    <div class="signup-connect">
+            <div className="login-wrap">
+                <div className="signup">
+                    <div className="signup-connect">
                         <h1>Create your account</h1>
-                        <a href="#" class="btn btn-social btn-facebook">
-                            <i class="fa fa-facebook" /> Sign in with Facebook
+                        <a href="#" className="btn btn-social btn-facebook">
+                            <i className="fa fa-facebook" /> Sign in with
+                            Facebook
                         </a>
-                        <a href="#" class="btn btn-social btn-twitter">
-                            <i class="fa fa-twitter" /> Sign in with Twitter
+                        <a href="#" className="btn btn-social btn-twitter">
+                            <i className="fa fa-twitter" /> Sign in with Twitter
                         </a>
-                        <a href="/auth/google" class="google-btn">
+                        <a href="/auth/google" className="google-btn">
                             <img
                                 src={require("../images/btn_google_signin_light_normal_web@2x.png")}
                             />
                         </a>
                     </div>
-                    <div class="signup-classic">
+                    <div className="signup-classic">
                         <h2>Or use the classical way</h2>
-                        <form class="form">
-                            <fieldset class="username">
+                        <form className="form">
+                            <fieldset className="username">
                                 <input type="text" placeholder="username" />
                             </fieldset>
-                            <fieldset class="email">
+                            <fieldset className="email">
                                 <input type="email" placeholder="email" />
                             </fieldset>
-                            <fieldset class="password">
+                            <fieldset className="password">
                                 <input type="password" placeholder="password" />
                             </fieldset>
-                            <button type="submit" class="btn">
+                            <button type="submit" className="btn">
                                 sign up
                             </button>
                         </form>

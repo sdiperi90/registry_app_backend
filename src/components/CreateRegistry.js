@@ -80,7 +80,6 @@ class CreateRegistry extends Component {
                             <option value="wedding">Wedding</option>
                             <option value="baby shower">Baby Shower</option>
                         </select>
-                        {this.state.event ? "" : <p>please fill the field</p>}
                     </div>
                     <div>
                         <label for="date">What date is your event</label>

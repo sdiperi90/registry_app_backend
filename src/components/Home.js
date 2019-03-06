@@ -17,11 +17,9 @@ class Home extends Component {
                 />
 
                 <div>
-                    <div create-registry-btn>
+                    <div className="create-registry-btn">
                         <Link to="/registry/create">
-                            <button className="create-registry-btn">
-                                Create Registry
-                            </button>
+                            <button>Create Registry</button>
                         </Link>
                     </div>
                     <div className="img-container">
