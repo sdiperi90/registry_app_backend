@@ -1,14 +1,23 @@
 const Sequelize = require("sequelize");
 const dbName = "registry_db";
-
-const db = new Sequelize({
-    database: dbName,
-    dialect: "postgres",
-    define: {
-        underscored: true
-    }
-});
-
+const db;
+if (process.env.DATABASE_URL) {
+    db = new Sequelize({
+        host: process.env.DATABASE_URL,
+        dialect: "postgres",
+        define: {
+            underscored: true
+        }
+    });
+} else {
+    db = new Sequelize({
+        database: dbName,
+        dialect: "postgres",
+        define: {
+            underscored: true
+        }
+    });
+}
 const User = db.define("user", {
     user_id: {
         type: Sequelize.INTEGER,
