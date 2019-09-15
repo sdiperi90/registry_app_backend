@@ -17,7 +17,9 @@ class Registry extends Component {
             eventId
         } = this.props;
 
-        let registryTypeClass = `${registryType.split(" ")[0]}-background`;
+        let registryTypeClass = `${
+            registryType ? registryType.split(" ")[0] : ""
+        }-background`;
         return (
             <div className="registry-container">
                 <div
