@@ -7,6 +7,7 @@ const passport = require("passport");
 const path = require("path");
 const keys = require("./config/keys");
 const cookieSession = require("cookie-session");
+require('dotenv').config();
 require("./services/passport");
 
 app.use(bodyParser.json());
@@ -32,7 +33,7 @@ require("./routes/product")(app);
 require("./routes/present")(app);
 
 app.get('*', (req, res) => {
-    res.sendFile(path.join(__dirname + 'build' + 'index.html'));
+    res.sendFile(path.join(__dirname + '/build' + '/index.html'));
 });
 
 app.listen(PORT, () => {
