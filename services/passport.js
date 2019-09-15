@@ -4,7 +4,7 @@ const keys = require("../config/keys");
 const { User } = require("../models/models");
 
 // console.developers.google.com;
-
+console.log(keys)
 passport.serializeUser((user, done) => {
     done(null, user.user_id);
 });

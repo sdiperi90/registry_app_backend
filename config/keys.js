@@ -1,8 +1,9 @@
-
-if (process.env.NODE_ENV !== 'production') {
-    require('./development_keys')
+console.log('environment', process.env.NODE_ENV)
+if (process.env.NODE_ENV != 'production') {
+    module.exports = require('./development_keys');
 } else {
-    require('./production_keys')
+    module.exports = require('./production_keys');
+
 }
 
 
