@@ -31,7 +31,7 @@ require("./routes/product")(app);
 require("./routes/present")(app);
 
 app.get('*', (req, res) => {
-    res.sendFile(path.join(__dirname + '/client/build/index.html'));
+    res.sendFile(path.join(__dirname + '/build/index.html'));
 });
 
 app.listen(PORT, () => {
