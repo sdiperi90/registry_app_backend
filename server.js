@@ -4,6 +4,7 @@ const bodyParser = require("body-parser");
 const morgan = require("morgan");
 const app = express();
 const passport = require("passport");
+const path = require("path");
 const keys = require("./config/keys");
 const cookieSession = require("cookie-session");
 require("./services/passport");

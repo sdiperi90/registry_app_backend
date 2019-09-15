@@ -1,6 +1,7 @@
 const Sequelize = require("sequelize");
 const dbName = "registry_db";
-const db;
+let db;
+console.log(process.env);
 if (process.env.DATABASE_URL) {
     db = new Sequelize({
         host: process.env.DATABASE_URL,
