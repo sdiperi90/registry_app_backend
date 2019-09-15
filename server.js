@@ -38,12 +38,13 @@ require("./routes/present")(app);
 // app.get('*', (req, res) => {
 //     res.sendFile(path.join(__dirname + '/build' + '/index.html'));
 // });
-
+let root = path.join(__dirname, '..', 'build/')
 app.use(function (req, res, next) {
     if (req.method === 'GET' && req.accepts('html') && !req.is('json') && !req.path.includes('.')) {
         res.sendFile('index.html', { root })
     } else next()
 })
+
 
 app.listen(PORT, () => {
     console.log(`Express server is listening on port ${PORT}`);
