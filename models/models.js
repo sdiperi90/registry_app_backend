@@ -4,13 +4,15 @@ let db;
 
 
 if (process.env.DATABASE_URL) {
-    db = new Sequelize({
+    db = new Sequelize(process.env.DATABASE_URL, {
+        dialect: 'postgres',
+        protocol: 'postgres',
         host: process.env.DATABASE_URL,
-        dialect: "postgres",
+        logging: true, //false
         define: {
             underscored: true
         }
-    });
+    })
 } else {
     db = new Sequelize({
         database: dbName,
