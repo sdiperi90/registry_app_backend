@@ -7,6 +7,7 @@ const passport = require("passport");
 const path = require("path");
 const keys = require("./config/keys");
 const cookieSession = require("cookie-session");
+var cors = require('cors');
 require('dotenv').config();
 require("./services/passport");
 
