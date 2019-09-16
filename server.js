@@ -11,6 +11,9 @@ require('dotenv').config();
 require("./services/passport");
 
 
+app.use(cors());
+
+
 app.use(bodyParser.json());
 app.use(morgan("dev"));
 // configuration object is passed to cookie session
