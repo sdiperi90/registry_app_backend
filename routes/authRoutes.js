@@ -18,7 +18,7 @@ module.exports = app => {
             // console.log("look what the deseralize user function did@");
             // // console.log(req.user);
             if (process.env.NODE_ENV === 'production') {
-                res.redirect("/dashboard");
+                res.redirect(`${frontendUrl}/dashboard`);
             } else {
                 res.redirect("/dashboard");
             }
