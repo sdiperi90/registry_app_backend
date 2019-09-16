@@ -10,7 +10,7 @@ const cookieSession = require("cookie-session");
 require('dotenv').config();
 require("./services/passport");
 
-app.use(express.static('/build'))
+
 app.use(bodyParser.json());
 app.use(morgan("dev"));
 // configuration object is passed to cookie session
@@ -35,15 +35,11 @@ require("./routes/present")(app);
 
 
 
-// app.get('*', (req, res) => {
-//     res.sendFile(path.join(__dirname + '/build' + '/index.html'));
-// });
-let root = path.join(__dirname, '..', 'build/')
-app.use(function (req, res, next) {
-    if (req.method === 'GET' && req.accepts('html') && !req.is('json') && !req.path.includes('.')) {
-        res.sendFile('index.html', { root })
-    } else next()
-})
+app.get('/', (req, res) => {
+    res.send('Weclome to express');
+});
+
+
 
 
 app.listen(PORT, () => {
