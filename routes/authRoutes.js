@@ -18,7 +18,12 @@ module.exports = app => {
             // console.log("look what the deseralize user function did@");
             // // console.log(req.user);
             if (process.env.NODE_ENV === 'production') {
-                res.redirect(`${frontendUrl}/dashboard`);
+
+                response.writeHead(301,
+                    { Location: `${frontendUrl}/dashboard` }
+                );
+                response.end();
+                return
             } else {
                 res.redirect("/dashboard");
             }
