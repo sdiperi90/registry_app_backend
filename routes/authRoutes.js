@@ -16,17 +16,17 @@ module.exports = app => {
         passport.authenticate("google"),
         (req, res) => {
             // console.log("look what the deseralize user function did@");
-            // // console.log(req.user);
-            if (process.env.NODE_ENV === 'production') {
+            console.log(req.user);
+            // if (process.env.NODE_ENV === 'production') {
 
-                response.writeHead(301,
-                    { Location: `${frontendUrl}/dashboard` }
-                );
-                response.end();
-                return
-            } else {
-                res.redirect("/dashboard");
-            }
+            //     response.writeHead(301,
+            //         { Location: `${frontendUrl}/dashboard` }
+            //     );
+            //     response.end();
+            //     return
+            // } else {
+            //     res.redirect("/dashboard");
+            // }
 
         }
     );
