@@ -27,6 +27,10 @@
         "validator": "^10.11.0"
     },
     "scripts": {
+        "react-start": "react-scripts start",
+        "build": "react-scripts build",
+        "test": "react-scripts test --env=jsdom",
+        "eject": "react-scripts eject",
         "db:init": "dropdb --if-exists registry_db && createdb registry_db",
         "db:reset": "node scripts/resetDb.js",
         "db:model": "node models/models.js",
@@ -34,7 +38,8 @@
         "server": "nodemon server.js",
         "dev": "concurrently \"npm run server\" \"react-scripts start\"",
         "start2": "concurrently \"node server.js\" \"react-scripts start\"",
-        "start": "node server.js"
+        "start": "node server.js",
+        "heroku-postbuild": "npm run build"
     },
     "eslintConfig": {
         "extends": "react-app"
