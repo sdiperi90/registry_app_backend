@@ -1,5 +1,6 @@
 const passport = require("passport");
 let frontendUrl = "https://registry-app.netlify.com"
+const url = require('url');
 module.exports = app => {
     // when user clicks login, the user is redirected to below route to allow user sign in with gmail account
     app.get(
@@ -18,12 +19,10 @@ module.exports = app => {
             // console.log("look what the deseralize user function did@");
             console.log('USER HERE', req.user);
             if (process.env.NODE_ENV === 'production') {
-
-                res.writeHead(301,
-                    { Location: `${frontendUrl}/dashboard` }
-                );
-                res.end();
-                return
+                res.redirect(url.format({
+                    pathname: `${frontendUrl}/dashboard`,
+                    query: req.user
+                }));
             } else {
                 res.redirect("/dashboard");
             }
