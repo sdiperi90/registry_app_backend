@@ -19,10 +19,10 @@ module.exports = app => {
             console.log(req.user);
             if (process.env.NODE_ENV === 'production') {
 
-                response.writeHead(301,
+                res.writeHead(301,
                     { Location: `${frontendUrl}/dashboard` }
                 );
-                response.end();
+                res.end();
                 return
             } else {
                 res.redirect("/dashboard");
