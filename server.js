@@ -38,6 +38,10 @@ require("./routes/product")(app);
 require("./routes/present")(app);
 
 
+// Handles any requests that don't match the ones above
+app.get('*', (req, res) => {
+    res.sendFile(path.join(__dirname + '/build/index.html'));
+});
 
 app.get('/', (req, res) => {
     res.send('Weclome to express');
