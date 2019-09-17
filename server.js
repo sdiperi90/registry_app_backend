@@ -13,7 +13,7 @@ require("./services/passport");
 
 
 app.use(cors());
-
+app.use(express.static(path.join(__dirname, '/build')));
 
 app.use(bodyParser.json());
 app.use(morgan("dev"));
@@ -40,12 +40,9 @@ require("./routes/present")(app);
 
 // Handles any requests that don't match the ones above
 app.get('*', (req, res) => {
-    res.sendFile(path.join(__dirname + '/build/index.html'));
+    res.sendFile('index.html');
 });
 
-app.get('/', (req, res) => {
-    res.send('Weclome to express');
-});
 
 
 
