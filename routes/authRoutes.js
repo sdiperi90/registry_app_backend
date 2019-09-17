@@ -16,7 +16,7 @@ module.exports = app => {
         passport.authenticate("google"),
         (req, res) => {
             // console.log("look what the deseralize user function did@");
-            console.log(req.user);
+            console.log('USER HERE', req.user);
             if (process.env.NODE_ENV === 'production') {
 
                 res.writeHead(301,
@@ -33,6 +33,7 @@ module.exports = app => {
 
     // this route is to check if there is user session
     app.get("/auth/current_user", (req, res) => {
+        console.log('FETCH USER NOW HERE', req.user);
         res.json(req.user);
     });
 
