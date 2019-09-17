@@ -15,7 +15,7 @@ class SignUp extends Component {
                         <a href="#" className="btn btn-social btn-twitter">
                             <i className="fa fa-twitter" /> Sign in with Twitter
                         </a>
-                        <a href={`${apiUrl}/auth/google`} className="google-btn">
+                        <a href={`/auth/google`} className="google-btn">
                             <img
                                 src={require("../images/btn_google_signin_light_normal_web@2x.png")}
                             />

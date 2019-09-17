@@ -30,7 +30,7 @@ class App extends Component {
     };
 
     componentDidMount = async () => {
-        let user = await axios(`${apiUrl}/auth/current_user`);
+        let user = await axios(`/auth/current_user`);
         console.log(user);
         // this.setState({
         //     user: user.data,
@@ -43,14 +43,14 @@ class App extends Component {
     };
 
     fetchEvent = async () => {
-        let events = await axios(`${apiUrl}/api/event/${this.state.user.user_id}`);
+        let events = await axios(`/api/event/${this.state.user.user_id}`);
         this.setState({
             events: events.data
         });
     };
 
     getProductData = async () => {
-        let products = await axios(`${apiUrl}/api/products`);
+        let products = await axios(`/api/products`);
         this.setState({
             products: products.data
         });
@@ -94,7 +94,7 @@ class App extends Component {
             product_id: obj.product_id
         };
 
-        let registryItems = await axios.post(`${apiUrl}/api/presents`, newItem);
+        let registryItems = await axios.post(`/api/presents`, newItem);
         console.log(registryItems.data);
 
         if (registryItems.data.length > 0) {
@@ -120,7 +120,7 @@ class App extends Component {
     handleRemoveItems = async obj => {
         console.log(obj);
         let updatedRegistryItem = await axios.delete(
-            `${apiUrl}/api/presents/${obj.present_id}`
+            `/api/presents/${obj.present_id}`
         );
         console.log(obj);
         this.setState(prev => {
@@ -133,7 +133,7 @@ class App extends Component {
     };
 
     fetchRegistryItem = async () => {
-        let registryItems = await axios(`${apiUrl}/api/presents/${this.state.eventId}`);
+        let registryItems = await axios(`/api/presents/${this.state.eventId}`);
         if (registryItems.data.length > 0) {
             let addedItems = registryItems.data.map(item => {
                 // console.log(item["product.img"]);

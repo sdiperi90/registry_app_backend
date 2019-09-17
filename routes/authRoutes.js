@@ -17,14 +17,12 @@ module.exports = app => {
         passport.authenticate("google"),
         (req, res) => {
             // console.log("look what the deseralize user function did@");
-            console.log('USER HERE', req.user);
             res.redirect("/dashboard");
         }
     );
 
     // this route is to check if there is user session
     app.get("/auth/current_user", (req, res) => {
-        console.log('FETCH USER NOW HERE', req.user);
         res.json(req.user);
     });
 

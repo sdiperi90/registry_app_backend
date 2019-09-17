@@ -44,7 +44,7 @@ class CreateRegistry extends Component {
             user_id: this.props.user.user_id
         };
 
-        let registry = await axios.post(`${apiUrl}/api/event`, newRegistry);
+        let registry = await axios.post(`/api/event`, newRegistry);
         let eventId = registry.data;
 
         this.setState({

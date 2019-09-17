@@ -31,7 +31,7 @@ class Header extends Component {
                                 <p>My Registry</p>
                             </Link>
                             <h2>Hello {this.props.user.first_name} </h2>
-                            <a href={`${apiUrl}/auth/logout`}>
+                            <a href={`/auth/logout`}>
                                 <button>Log out</button>
                             </a>
                         </div>
