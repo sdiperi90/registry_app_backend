@@ -11,7 +11,7 @@ import Cookies from "universal-cookie";
 import axios from "axios";
 import Dashboard from "./components/Dashboard";
 import RegistrySearchResult from "./components/RegistrySearchResult";
-import { apiUrl } from './config'
+
 const cookies = new Cookies();
 
 
@@ -42,7 +42,7 @@ class App extends Component {
     };
 
     fetchEvent = async () => {
-        let events = await axios(`/api/event/${this.state.user.user_id}`);
+        let events = await axios(`/api/event/${this.state.user._id}`);
         this.setState({
             events: events.data
         });
@@ -50,6 +50,7 @@ class App extends Component {
 
     getProductData = async () => {
         let products = await axios(`/api/products`);
+        console.log(products)
         this.setState({
             products: products.data
         });
@@ -68,7 +69,7 @@ class App extends Component {
     };
 
     getEventId = id => {
-        console.log(id);
+        // console.log(id);
         cookies.set("event_id", id, { path: "/" });
 
         this.setState({
@@ -119,13 +120,13 @@ class App extends Component {
     handleRemoveItems = async obj => {
         console.log(obj);
         let updatedRegistryItem = await axios.delete(
-            `/api/presents/${obj.present_id}`
+            `/api/presents/${obj._id}`
         );
         console.log(obj);
         this.setState(prev => {
             return {
                 registryItems: prev.registryItems.filter(item => {
-                    return item.product_id !== obj.product_id;
+                    return item._id !== obj._id;
                 })
             };
         });

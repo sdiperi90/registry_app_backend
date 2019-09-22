@@ -9,7 +9,11 @@ const keys = require("./config/keys");
 const cookieSession = require("cookie-session");
 var cors = require('cors');
 require('dotenv').config();
+require("./scripts/mongoConnect")
 require("./services/passport");
+// require("./scripts/seed")
+
+
 
 
 app.use(cors());

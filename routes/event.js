@@ -10,12 +10,7 @@ module.exports = app => {
         try {
             let id = req.params.id;
             console.log(req.params);
-            let events = await Event.findAll({
-                where: {
-                    user_id: id
-                },
-                raw: true
-            });
+            let events = await Event.find({});
             res.json(events);
         } catch (error) {
             console.log(error);

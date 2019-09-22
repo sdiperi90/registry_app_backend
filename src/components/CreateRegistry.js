@@ -2,7 +2,6 @@ import React, { Component } from "react";
 import { Link, Redirect, withRouter } from "react-router-dom";
 import validator from "validator";
 import axios from "axios";
-import { apiUrl } from '../config'
 class CreateRegistry extends Component {
     state = {
         registries: [],
@@ -45,6 +44,7 @@ class CreateRegistry extends Component {
         };
 
         let registry = await axios.post(`/api/event`, newRegistry);
+        console.log(registry)
         let eventId = registry.data;
 
         this.setState({

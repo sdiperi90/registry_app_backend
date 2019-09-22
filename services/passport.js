@@ -1,12 +1,11 @@
 const passport = require("passport");
 const GoogleStrategy = require("passport-google-oauth20").Strategy;
 const keys = require("../config/keys");
-const { User } = require("../models/models");
+const User = require("../models/user");
 
-// console.developers.google.com;
-console.log(keys)
 passport.serializeUser((user, done) => {
-    done(null, user.user_id);
+    console.log("MY USER", user)
+    done(null, user._id.toString());
 });
 
 passport.deserializeUser(async (id, done) => {
@@ -23,14 +22,13 @@ passport.use(
         },
         async (accessToken, refreshToken, profile, done) => {
             try {
+                console.log('MONGO USER SCHEMA', User)
                 const user = await User.findOne({
-                    raw: true,
-                    where: {
-                        googleId: profile.id
-                    }
+                    googleId: profile.id
                 });
                 console.log(user);
                 if (user) {
+                    console.log(user)
                     // If the credentials are valid, the verify callback invokes done to supply
                     //Passport with the user that authenticated.
                     return done(null, user);
@@ -39,12 +37,21 @@ passport.use(
                     console.log("refresh token:", refreshToken);
                     console.log("profile:", profile);
                     // if we don't have a user record with this ID make a new record in db
-                    let user = await User.create({
+
+                    let user = new User({
                         googleId: profile.id,
                         first_name: profile.name.givenName,
                         last_name: profile.name.familyName,
                         email: profile.emails[0].value
-                    });
+                    })
+                    user.save()
+                    // let user = await User.create({
+                    //     googleId: profile.id,
+                    //     first_name: profile.name.givenName,
+                    //     last_name: profile.name.familyName,
+                    //     email: profile.emails[0].value
+                    // });
+                    console.log("mongoUser", user)
                     return done(null, user);
                 }
             } catch (err) {

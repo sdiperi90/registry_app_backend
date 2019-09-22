@@ -8,7 +8,7 @@ const ensureAuthenticated = require("../middleware/ensureAuthenticated");
 module.exports = app => {
     app.get("/api/products", async (req, res) => {
         try {
-            let products = await Product.findAll({ raw: true });
+            let products = await Product.find({});
             console.log(products);
             res.json(products);
             console.log("working");

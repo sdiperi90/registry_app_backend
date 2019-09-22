@@ -1,1 +1,0 @@
-export const apiUrl = 'https://registry-app-backend.herokuapp.com';

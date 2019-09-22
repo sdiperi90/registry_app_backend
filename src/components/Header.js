@@ -1,6 +1,5 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
-import { apiUrl } from "../config";
 
 class Header extends Component {
     componentDidMount() {

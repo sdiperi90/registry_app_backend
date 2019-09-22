@@ -1,45 +1,47 @@
-const { db, User, Present, Event, Product } = require("../models/models");
+const { User, Present, Event, Product } = require("../models/models");
+const db = require("../scripts/mongoConnect")
 
 const seed = async () => {
     try {
         // await User.truncate({ restartIdentity: true });
-        await User.bulkCreate([
-            {
-                first_name: "Saida",
-                last_name: "DiPeri",
-                email: "sdiperi17@gmail.com",
-                username: "sdiperi90"
-            },
-            {
-                first_name: "Pamela",
-                last_name: "Johnson",
-                email: "pjohnson@gmail.com",
-                username: "pam90"
-            }
-        ]);
+        // await User.bulkInsert([
+        //     {
+        //         first_name: "Saida",
+        //         last_name: "DiPeri",
+        //         email: "sdiperi17@gmail.com",
+        //         username: "sdiperi90"
+        //     },
+        //     {
+        //         first_name: "Pamela",
+        //         last_name: "Johnson",
+        //         email: "pjohnson@gmail.com",
+        //         username: "pam90"
+        //     }
+        // ]);
 
         // await Event.truncate({ restartIdentity: true });
-        await Event.bulkCreate([
-            {
-                title: "Saida & Joey's Baby Registry",
-                type: "Baby Shower",
-                date: "April 7, 2019",
-                host_1: "Saida DiPeri",
-                host_2: "Joey DiPeri",
-                user_id: 1
-            },
-            {
-                title: "Saida & Joey's Wedding",
-                type: "Wedding",
-                date: "March 30, 2018",
-                host_1: "Saida DiPeri",
-                host_2: "Joey DiPeri",
-                user_id: 2
-            }
-        ]);
+        // await Event.bulkInsert([
+        //     {
+        //         title: "Saida & Joey's Baby Registry",
+        //         type: "Baby Shower",
+        //         date: "April 7, 2019",
+        //         host_1: "Saida DiPeri",
+        //         host_2: "Joey DiPeri",
+        //         user_id: 1
+        //     },
+        //     {
+        //         title: "Saida & Joey's Wedding",
+        //         type: "Wedding",
+        //         date: "March 30, 2018",
+        //         host_1: "Saida DiPeri",
+        //         host_2: "Joey DiPeri",
+        //         user_id: 2
+        //     }
+        // ]);
 
         // await Product.truncate({ restartIdentity: true });
-        await Product.bulkCreate([
+
+        let products2 = await Product.create([
             {
                 product_name: "Crib",
                 product_description:
@@ -268,15 +270,17 @@ const seed = async () => {
                 link:
                     "https://www.buybuybaby.com/store/product/spunky-hedgehog-plush-toy/1061875456?categoryId=30008"
             }
-        ]);
 
-        // await Present.truncate({ restartIdentity: true });
-        await Present.bulkCreate([
-            {
-                purchased: false,
-                favorites: false
-            }
         ]);
+        // products2.save()
+        // console.log(products)
+        // await Present.truncate({ restartIdentity: true });
+        // await Present.bulkInsert([
+        //     {
+        //         purchased: false,
+        //         favorites: false
+        //     }
+        // ]);
     } catch (err) {
         console.log("error", err.message);
     }

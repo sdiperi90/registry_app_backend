@@ -1,5 +1,4 @@
 import React, { Component } from "react";
-import { apiUrl } from "../config";
 
 class SignUp extends Component {
     render() {

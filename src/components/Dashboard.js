@@ -16,22 +16,22 @@ class Dashboard extends Component {
                         </Link>
                     </div>
                 ) : (
-                    events.map(event => {
-                        return (
-                            <Link to={`/events/${event.event_id}`}>
-                                <div
-                                    className="registry-list"
-                                    onClick={e => {
-                                        getEventId(event.event_id);
-                                    }}
-                                >
-                                    <h1>{event.type}</h1> <h2>{event.title}</h2>
-                                    <p>on {event.date}</p>
-                                </div>
-                            </Link>
-                        );
-                    })
-                )}
+                        events.map(event => {
+                            return (
+                                <Link to={`/events/${event._id}`}>
+                                    <div
+                                        className="registry-list"
+                                        onClick={e => {
+                                            getEventId(event._id);
+                                        }}
+                                    >
+                                        <h1>{event.type}</h1> <h2>{event.title}</h2>
+                                        <p>on {event.date}</p>
+                                    </div>
+                                </Link>
+                            );
+                        })
+                    )}
             </div>
         );
     }
