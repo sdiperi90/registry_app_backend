@@ -8,7 +8,7 @@ class Product extends Component {
             <div className="product-container">
                 <div>
                     <img
-                        src={require(`../images/baby-shower/${product.img}`)}
+                    // src={require(`../images/baby-shower/${product.img}`)}
                     />
                 </div>
                 <div className="product-detail">
@@ -18,7 +18,7 @@ class Product extends Component {
                     <p>{`${product.product_description}`}</p>
                     <div className="add-to-registry">
                         <div>
-                            <img src={require("../images/gift-trans.png")} />
+                            {/* <img src={require("../images/gift-trans.png")} /> */}
                         </div>
 
                         <button

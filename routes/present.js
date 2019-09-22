@@ -23,6 +23,7 @@ module.exports = app => {
     app.post("/api/presents", async (req, res) => {
         try {
             console.log("working", req.body);
+            let event = Event.findById(req.body.event_id)
             await Present.create(req.body);
             let registryItems = await Present.find({
                 event_id: req.body.event_id
@@ -39,12 +40,10 @@ module.exports = app => {
     app.delete("/api/presents/:present_id", async (req, res) => {
         try {
             console.log("working", req.params);
-            await Present.destroy({
-                where: {
-                    present_id: req.params.present_id
-                },
-                raw: true
-            });
+            await Present.findByIdAndRemove(req.params.present_id, () => {
+                console.log('removed')
+            })
+
             res.json(true);
         } catch (error) {
             console.log(error);

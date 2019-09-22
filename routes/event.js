@@ -24,7 +24,7 @@ module.exports = app => {
         try {
             console.log("working", req.body);
             let event = await Event.create(req.body);
-            res.status(200).json(event.event_id);
+            res.status(200).json(event._id);
             return;
         } catch (error) {
             console.log(error);
