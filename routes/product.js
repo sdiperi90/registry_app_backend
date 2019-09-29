@@ -11,7 +11,6 @@ module.exports = app => {
             let products = await Product.find({});
             res.json(products);
         } catch (error) {
-            console.log(error);
             res.status(500).json({
                 message: error.message
             });

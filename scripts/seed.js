@@ -272,17 +272,8 @@ const seed = async () => {
             }
 
         ]);
-        // products2.save()
-        // console.log(products)
-        // await Present.truncate({ restartIdentity: true });
-        // await Present.bulkInsert([
-        //     {
-        //         purchased: false,
-        //         favorites: false
-        //     }
-        // ]);
+
     } catch (err) {
-        console.log("error", err.message);
     }
     process.exit();
 };

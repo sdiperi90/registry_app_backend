@@ -1,5 +1,6 @@
 const mongoose = require('mongoose')
 const Schema = mongoose.Schema
+const ProductSchema = require("./product")
 
 
 const PresentSchema = new Schema({
@@ -10,10 +11,10 @@ const PresentSchema = new Schema({
     // },
     purchased: Boolean,
     favorites: Boolean,
-    product: [{
+    product: {
         type: Schema.Types.ObjectId,
-        ref: "product"
-    }]
+        ref: 'product'
+    }
 })
 
 module.exports = mongoose.model("present", PresentSchema)

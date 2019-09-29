@@ -17,7 +17,7 @@ class SearchRegistry extends Component {
     };
     render() {
         let { fetchRegistryItem } = this.props;
-        console.log(fetchRegistryItem);
+
         return (
             <div className="form-container">
                 <h1>Registries & Lists </h1>

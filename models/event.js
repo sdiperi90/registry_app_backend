@@ -1,5 +1,6 @@
 const mongoose = require('mongoose')
 const Schema = mongoose.Schema
+const PresentSchema = require('./present')
 
 
 const EventSchema = new Schema({
@@ -8,7 +9,6 @@ const EventSchema = new Schema({
     date: String,
     host_1: String,
     host_2: String,
-
     present: [{
         type: Schema.Types.ObjectId,
         ref: 'present'

@@ -6,14 +6,20 @@ const { Present, Product, Event } = require("../models/models");
 const ensureAuthenticated = require("../middleware/ensureAuthenticated");
 
 module.exports = app => {
-    app.get("/api/presents/:id", async (req, res) => {
+    app.get("/api/presents/:event_id", async (req, res) => {
+        console.log("I got my event_id", req)
         try {
-            console.log(req.params);
-            let registryItems = await Present.find({});
-            console.log(registryItems);
-            res.json(registryItems);
+
+            let userEvent = await Event.findById(req.params.event_id).populate({
+                path: 'present',
+                populate: {
+                    path: "product"
+                }
+            });
+            console.log("test", userEvent)
+            res.json(userEvent.present);
         } catch (error) {
-            console.log(error);
+
             res.status(500).json({
                 message: error.message
             });
@@ -21,16 +27,24 @@ module.exports = app => {
     });
 
     app.post("/api/presents", async (req, res) => {
+        console.log(req.body)
         try {
-            console.log("working", req.body);
-            let event = Event.findById(req.body.event_id)
-            await Present.create(req.body);
-            let registryItems = await Present.find({
-                event_id: req.body.event_id
-            });
-            res.json(registryItems);
+            let present = await Present.create({ purchased: false, favorites: false });
+            let event = await Event.findById(req.body.event_id)
+            let product = await Product.findById(req.body.product_id)
+            present.product = product
+            event.present.push(present)
+            Promise.all([present.save(), event.save()])
+            let userPresents = await Event.findById(req.body.event_id).populate({
+                path: "present",
+                populate: {
+                    path: 'product'
+                }
+            })
+            console.log(userPresents.present)
+            res.json(userPresents.present);
         } catch (error) {
-            console.log(error);
+
             res.status(500).json({
                 message: error.message
             });
@@ -38,15 +52,13 @@ module.exports = app => {
     });
 
     app.delete("/api/presents/:present_id", async (req, res) => {
+        console.log("delete", req.params)
         try {
-            console.log("working", req.params);
             await Present.findByIdAndRemove(req.params.present_id, () => {
-                console.log('removed')
             })
 
             res.json(true);
         } catch (error) {
-            console.log(error);
             res.status(500).json({
                 message: error.message
             });

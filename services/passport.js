@@ -4,12 +4,12 @@ const keys = require("../config/keys");
 const User = require("../models/user");
 
 passport.serializeUser((user, done) => {
-    console.log("MY USER", user)
     done(null, user._id.toString());
 });
 
 passport.deserializeUser(async (id, done) => {
     const user = await User.findById(id);
+    //  done(null, user); user gets atttached to req.user
     done(null, user);
 });
 
@@ -22,13 +22,13 @@ passport.use(
         },
         async (accessToken, refreshToken, profile, done) => {
             try {
-                console.log('MONGO USER SCHEMA', User)
+
                 const user = await User.findOne({
                     googleId: profile.id
                 });
-                console.log(user);
+
                 if (user) {
-                    console.log(user)
+
                     // If the credentials are valid, the verify callback invokes done to supply
                     //Passport with the user that authenticated.
                     return done(null, user);
@@ -51,7 +51,7 @@ passport.use(
                     //     last_name: profile.name.familyName,
                     //     email: profile.emails[0].value
                     // });
-                    console.log("mongoUser", user)
+
                     return done(null, user);
                 }
             } catch (err) {

@@ -17,14 +17,14 @@ class CreateRegistry extends Component {
     };
 
     componentDidMount() {
-        console.log(this.state);
+
     }
     onRegistryFormChange = e => {
         const element = e.target;
         const { name, value } = element;
         const newState = {};
         newState[name] = value;
-        console.log(newState);
+
         this.setState(newState);
     };
 
@@ -44,7 +44,7 @@ class CreateRegistry extends Component {
         };
 
         let registry = await axios.post(`/api/event`, newRegistry);
-        console.log(registry)
+
         let eventId = registry.data;
 
         this.setState({

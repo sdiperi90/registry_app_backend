@@ -5,7 +5,7 @@ import SearchRegistry from "./SearchRegistry";
 class Home extends Component {
     render() {
         let { getEventId, fetchRegistryItem } = this.props;
-        console.log(fetchRegistryItem);
+
         return (
             <div>
                 <div className="home-page-img">

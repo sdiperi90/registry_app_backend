@@ -1,6 +1,5 @@
 const passport = require("passport");
-let frontendUrl = "https://registry-app.netlify.com"
-const url = require('url');
+
 module.exports = app => {
     // when user clicks login, the user is redirected to below route to allow user sign in with gmail account
     app.get(
@@ -16,7 +15,6 @@ module.exports = app => {
         "/auth/google/callback",
         passport.authenticate("google"),
         (req, res) => {
-            // console.log("look what the deseralize user function did@");
             res.redirect("/dashboard");
         }
     );
